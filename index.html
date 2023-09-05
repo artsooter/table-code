@@ -179,6 +179,7 @@
 
 	document.getElementById('input').onchange=function (e){
 		const value= e.target.value
+        console.log(value)
 		const searchParams = new URLSearchParams(location.search);
 		searchParams.set('publishContent',value)
 		location.search=searchParams.toString()
