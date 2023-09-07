@@ -1,6 +1,4 @@
-import Tesseract from '../web_modules/tesseractjs.js';
-
-function imgInit(event) {
+function upload(event) {
 	let items = event.clipboardData && event.clipboardData.items;
 	let file = null;
 	if (items && items.length) {
@@ -15,21 +13,10 @@ function imgInit(event) {
 	var reader = new FileReader()
 	reader.onload = function (event) {
 		// event.target.result就是图片的Base64地址啦
-		const img = document.createElement('img')
+		const img = document.getElementById('img')
 		img.setAttribute('src', event.target.result)
-		document.body.appendChild(img)
 	}
 	reader.readAsDataURL(file);
-	// 此时file就是剪切板中的图片文件
-
-	Tesseract.recognize(
-		file,
-		'eng',
-		{ logger: m => console.log(m) }
-	).then(({ data: { text } }) => {
-		console.log(text);
-	}).catch(r=>console.log(r))
 }
 
-
-export {imgInit}
+export {upload}
