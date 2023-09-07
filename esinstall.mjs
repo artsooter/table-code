@@ -1,6 +1,8 @@
 import {install} from 'esinstall';
 import {readFile} from 'fs/promises';
 
+// const {install} = require('esinstall')
+// const {readFile} = require('fs/promises')
 const json = JSON.parse(
 	await readFile(
 		new URL('./package.json', import.meta.url)

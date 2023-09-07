@@ -1,6 +1,8 @@
+import Tesseract from '../web_modules/tesseractjs.js';
+
 function imgInit(event) {
-	var items = event.clipboardData && event.clipboardData.items;
-	var file = null;
+	let items = event.clipboardData && event.clipboardData.items;
+	let file = null;
 	if (items && items.length) {
 		// 检索剪切板items
 		for (var i = 0; i < items.length; i++) {
@@ -19,6 +21,14 @@ function imgInit(event) {
 	}
 	reader.readAsDataURL(file);
 	// 此时file就是剪切板中的图片文件
+
+	Tesseract.recognize(
+		file,
+		'eng',
+		{ logger: m => console.log(m) }
+	).then(({ data: { text } }) => {
+		console.log(text);
+	}).catch(r=>console.log(r))
 }
 
 
