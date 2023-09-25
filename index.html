@@ -5,16 +5,38 @@
     <title>Table-Code</title>
 </head>
 <body>
-<div>
-<img  id="img"/>
+<div class="container">
+    <div style="display: grid;grid-template-columns: 1fr 1fr 1fr;align-items: center;justify-content: center;">
+        <div class="card">
+            <div class="card-inner">
+                <span id="placeholder" style="position: absolute;">在当前页面粘贴图片</span>
+                <img id="img" width="100%"/>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-inner">
+                <textarea style="resize:none;" placeholder="接口定义 JSON格式" type="text" class="input" id="input"></textarea>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-inner">
+                <textarea style="resize:none;" placeholder="表格代码模版" type="text" class="input" id="template"></textarea>
+            </div>
+        </div>
+        <button style="grid-column-start: span 3;" class="submit" id="submit">生成</button>
+        <textarea style="grid-column-start: span 3;" class="answer" disabled></textarea>
+    </div>
 </div>
 
 
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/universal-sentence-encoder"></script>
+<script src="https://cdn.jsdelivr.net/gh/hchiam/text-similarity-test@1.0.0/tfjs-stuff.js"></script>
 <script src="./ocrad.js"></script>
 <script type="module" src="index.js"></script>
 <script>
 
 </script>
 </body>
-<style />
+<link href="./index.css" rel="stylesheet"/>
 </html>

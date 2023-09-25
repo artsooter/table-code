@@ -2,8 +2,10 @@ import Tesseract from "../web_modules/tesseractjs.js";
 
 async function ocr() {
 	const img = document.getElementById('img')
-	OCRAD(img, function (text) {
-		console.log('ocrad 22=>', text)
+	return new Promise((resolve, reject) => {
+		OCRAD(img, function (text) {
+			resolve(text);
+		})
 	})
 
 	// Tesseract 的使用方式
