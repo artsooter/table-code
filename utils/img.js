@@ -6,11 +6,9 @@ function upload(event) {
 		for (var i = 0; i < items.length; i++) {
 			if (items[i].type.indexOf('image') !== -1) {
 				file = items[i].getAsFile();
-
 				// 隐藏文字
 				const placeholder = document.getElementById('placeholder')
 				placeholder.setAttribute('style', 'display:none')
-
 				break;
 			}
 		}

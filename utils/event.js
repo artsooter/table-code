@@ -1,16 +1,22 @@
 function initData() {
 	const templateEle = document.getElementById('template')
 	templateEle.value = 'el-table-column(label=\'[header_key]\', align=\'center\', show-tooltip-when-overflow)\n' +
-		'\t\t\t\t\ttemplate(v-slot="{row}") {{row.[api_key] }}'
+		'\t\t\t\t\ttemplate(v-slot="{row}") {{row.[api_key] }}\n'
 
 	const intputEle = document.getElementById('input')
 	intputEle.value ='{\n' +
-		'                "level": 0,\n' +
-		'                "level_name": "string",\n' +
-		'                "maker": 0,\n' +
-		'                "taker": 0,\n' +
-		'                "type": 0\n' +
-		'              }'
+		'        "avg_price": "34.56",\n' +
+		'        "currency": "string",\n' +
+		'        "direction": "string",\n' +
+		'        "exchange": "string",\n' +
+		'        "instrument": "string",\n' +
+		'        "liquidation_price": "23.12",\n' +
+		'        "market_price": "34.57",\n' +
+		'        "size": "1234.56",\n' +
+		'        "size_usd": "1244.56",\n' +
+		'        "type": "string",\n' +
+		'        "upl": "-12.34"\n' +
+		'      }'
 }
 
 function input(value) {

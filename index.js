@@ -1,6 +1,6 @@
 import {upload} from './utils/img.js'
 import {ocr} from './utils/ocr.js'
-import {input,initData} from './utils/event.js'
+import {input, initData} from './utils/event.js'
 
 window.onload = initData()
 document.addEventListener('paste', upload)
@@ -12,22 +12,48 @@ async function submit() {
 	const text = await ocr()
 	const api = document.getElementById('input').value
 	const template = document.getElementById('template').value
-	console.log(api,template)
+	const header_keys = text.replace('\n', '').split(' ')
+	const all_api_keys = [...Object.keys(JSON.parse(api))].map(key => key.toLowerCase())
+	const ans = []
+	for (const index in header_keys) {
+		console.log('transfering ==>',index)
+		const key = header_keys[index]
+		const a = {header_key: key, api_key: ''}
+		if (all_api_keys.includes(key.toLowerCase())) {
+			a.api_key = key.toLowerCase()
+		} else {
+			a.api_key = await initModel(header_keys[0], all_api_keys)
+		}
+		ans.push(JSON.parse(JSON.stringify(a)))
+	}
+	console.log(ans)
+
+	let val = ''
+	ans.forEach(({header_key, api_key}) => {
+		val += template.replaceAll('[header_key]', header_key).replaceAll('[api_key]', api_key)
+	})
+	console.log(val)
+	document.getElementById('answer').value = val
+
 }
 
 
-
-function initModel() {
-
-	var sentence1 = "coins";
-	var sentence2 = "currency";
-	var sentence3 = "direction";
-	function callback(similarityScore) {
-		console.log('similarityScore',Math.round(similarityScore * 100 * 100) / 100 + "%")
+async function initModel(key, arr) {
+	let max = 0, res = ''
+	for (let index in arr) {
+		const snap = arr[index]
+		const num = await new Promise((resolve, reject) => {
+			useModel(key, snap, function (similarityScore) {
+				resolve(similarityScore)
+			});
+		})
+		if (num > max) {
+			max = num
+			res = snap
+		}
 	}
-	useModel(sentence1, sentence2, callback); // useModel comes from tfjs-stuff.js
-	useModel(sentence1, sentence3, callback); // useModel comes from tfjs-stuff.js
-	console.log(123,sentence2,useModel)
+	return res
+
 }
 
 initModel()
