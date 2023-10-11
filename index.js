@@ -22,7 +22,7 @@ async function submit() {
 		const key = header_keys[index]
 		const a = {header_key: key, api_key: ''}
 		if (all_api_keys.map(e => e.replace('_', ' ')).includes(key.toLowerCase())) {
-			a.api_key = key.toLowerCase()
+			a.api_key = key.replace(' ', '_').toLowerCase()
 		} else {
 			a.api_key = await initModel(header_keys[0], all_api_keys)
 		}
