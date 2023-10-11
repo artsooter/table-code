@@ -28,6 +28,7 @@ async function submit() {
 		}
 		ans.push(JSON.parse(JSON.stringify(a)))
 	}
+	loadingEle.innerText=''
 	console.log(ans)
 
 	let val = ''
