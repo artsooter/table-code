@@ -17,7 +17,7 @@ async function submit() {
 	const all_api_keys = [...Object.keys(JSON.parse(api))].map(key => key.toLowerCase())
 	const ans = []
 	for (const index in header_keys) {
-		loadingEle.innerText = '处理中，进度：' + (100 * (index+1) / header_keys.length).toFixed(0) + '%'
+		loadingEle.innerText = '处理中，进度：' + (100 * (index) / header_keys.length).toFixed(0) + '%'
 		console.log('transfering ==>', index)
 		const key = header_keys[index]
 		const a = {header_key: key, api_key: ''}
