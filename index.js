@@ -1,5 +1,5 @@
 import {upload} from './utils/img.js'
-import {ocr} from './utils/ocr.js'
+import {ocr} from './utils/ocr_baidu.js'
 import {input, initData} from './utils/event.js'
 
 window.onload = initData()
@@ -12,14 +12,14 @@ async function submit() {
 	const text = await ocr()
 	const api = document.getElementById('input').value
 	const template = document.getElementById('template').value
-	const header_keys = text.replace('\n', '').split(' ')
+	const header_keys = text
 	const all_api_keys = [...Object.keys(JSON.parse(api))].map(key => key.toLowerCase())
 	const ans = []
 	for (const index in header_keys) {
-		console.log('transfering ==>',index)
+		console.log('transfering ==>', index)
 		const key = header_keys[index]
 		const a = {header_key: key, api_key: ''}
-		if (all_api_keys.includes(key.toLowerCase())) {
+		if (all_api_keys.map(e => e.replace('_', ' ')).includes(key.toLowerCase())) {
 			a.api_key = key.toLowerCase()
 		} else {
 			a.api_key = await initModel(header_keys[0], all_api_keys)
