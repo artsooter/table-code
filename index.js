@@ -24,7 +24,8 @@ async function submit() {
 		if (all_api_keys.map(e => e.replace('_', ' ')).includes(key.toLowerCase())) {
 			a.api_key = key.replace(' ', '_').toLowerCase()
 		} else {
-			a.api_key = await initModel(header_keys[0], all_api_keys)
+			// a.api_key = await initModel(header_keys[0], all_api_keys)
+			a.api_key = 'TODO'
 		}
 		ans.push(JSON.parse(JSON.stringify(a)))
 	}
